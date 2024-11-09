@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.footer__content {
+    width: 1360px;
+    height: 20px;
+    margin: 0 40px 24px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__content_name {
+    margin: 0;
+}
+
+.footer__content_year {
+    margin: 0;
+}
