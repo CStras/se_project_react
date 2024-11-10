@@ -12,7 +12,7 @@ import { coordinates, APIkey } from '../../utils/constants';
 function App() {
   const [weatherData, setWeatherData] = useState({ 
     type: "cold", 
-    temp: { F: 999, C: 999 }, 
+    temp: { F: 999 }, 
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
@@ -40,9 +40,10 @@ function App() {
   useEffect(() => {
     getWeather(coordinates, APIkey)
     .then((data) => {
-      console.log(data);
-      //setWeatherData(filterWeatherData(data));
-    }).catch(console.error);
+      const filterData = filterWeatherData(data);
+      setWeatherData(filterData);
+    })
+    .catch(console.error);
   }, []);
 
   return (
