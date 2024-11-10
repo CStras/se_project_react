@@ -108,6 +108,10 @@
     padding: 0;
 }
 
+.modal__submit:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 .modal__label_type_radio {
     margin-bottom: 8px;
     border: none;

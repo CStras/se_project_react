@@ -24,17 +24,20 @@ function App() {
   }
 
   const handleOverlay = (evt) => {
-    if (evt.target.classList.contains("modal__open")) {
+    if (evt.target.classList.contains("modal__open") || evt.key === "Escape") {
       closeActiveModal();
+      document.addEventListener("keydown", handleOverlay);
     }
   }
 
   const handleAddClick = () => {
-    setActiveModal("add-garment")
+    setActiveModal("add-garment");
+
   }
 
   const closeActiveModal = () => {
     setActiveModal("");
+    document.removeEventListener("keydown", handleOverlay);
   }
 
   useEffect(() => {
