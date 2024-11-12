@@ -23,12 +23,7 @@ function App() {
     setSelectedCard(card);
   }
 
-  const handleOverlay = (evt) => {
-    if (evt.target.classList.contains("modal__open") || evt.key === "Escape") {
-      closeActiveModal();
-      document.addEventListener("keydown", handleOverlay);
-    }
-  }
+
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -37,7 +32,6 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
-    document.removeEventListener("keydown", handleOverlay);
   }
 
   useEffect(() => {
@@ -49,12 +43,31 @@ function App() {
     .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleModalClose = (evt) => {
+      if ((evt.target.classList.contains("modal_open") && evt.type === "click") || evt.key === "Escape") {
+        closeActiveModal();
+      }
+    }
+
+    document.addEventListener("keydown", handleModalClose);
+    document.addEventListener("click", handleModalClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleModalClose);
+      document.removeEventListener("click", handleModalClose);
+    }
+
+  }, [activeModal]);
+
   return (
     <div className='app'>
       <div className="app__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
-        <ModalWithForm handleOverlay={handleOverlay} closeActiveModal={closeActiveModal} buttonText="Add garment" titleText="New garment" activeModal={activeModal}>
+        <ModalWithForm  closeActiveModal={closeActiveModal} buttonText="Add garment" isOpen={activeModal === "add-garment"} titleText="New garment" activeModal={activeModal}>
           <label htmlFor='name' className='modal__label'>Name
             <input type='text' className='modal__input' id='name' placeholder='Name'></input>
           </label>
@@ -83,7 +96,7 @@ function App() {
             </div>
           </fieldset>
         </ModalWithForm>
-        <ItemModal handleOverlay={handleOverlay} activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
+        <ItemModal  activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
       </div>
       <Footer />
     </div>
