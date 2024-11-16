@@ -3,16 +3,14 @@ import './WeatherCard.css'
 
 function WeatherCard({ weatherData }) {
 
+
+
     const filterOptions = weatherOptions.filter((option) => {
         return (
             option.day === weatherData.isDay && 
             option.condition === weatherData.condition
         ); 
     }); 
-
-   
-    console.log(weatherOptions);
-    console.log(filterOptions);
 
     let weatherOption;
     if (filterOptions.length === 0) {
@@ -21,6 +19,10 @@ function WeatherCard({ weatherData }) {
         weatherOption = filterOptions[0];
 
     }
+
+    console.log(weatherData.isDay);
+    console.log(weatherOptions);
+    console.log(filterOptions);
 
 
     return <section className="weather-card">
