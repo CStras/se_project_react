@@ -11,6 +11,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { coordinates, APIkey } from '../../utils/constants';
 import {CurrentTemperatureUnitContext} from '../../contexts/CurrentTemperatureUnitContext';
 import AddItemModal from '../AddItemModal/AddItemModal';
+import { getItems } from '../../utils/api';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ 
@@ -22,6 +23,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -56,6 +58,15 @@ function App() {
   }, []);
 
   useEffect(() => {
+    getItems()
+    .then((data) => {
+      setClothingItems(data)
+    })
+    .catch(console.error);
+  }, []);
+
+
+  useEffect(() => {
     if (!activeModal) return;
 
     const handleModalClose = (evt) => {
@@ -81,8 +92,8 @@ function App() {
         <CurrentTemperatureUnitContext.Provider value={{currentTemperatureUnit, handleToggleSwitchChange}}>
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Routes>
-          <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />}/>
-          <Route path='/profile' element={<Profile handleCardClick={handleCardClick} />}/>
+          <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} clothingItems={clothingItems} />}/>
+          <Route path='/profile' element={<Profile handleCardClick={handleCardClick} clothingItems={clothingItems} />}/>
         </Routes>
         </CurrentTemperatureUnitContext.Provider>
       </div>
