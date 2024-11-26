@@ -101,6 +101,30 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "asdf",
+      "weather": "warm",
+      "imageUrl": "https://gratisography.com/wp-content/uploads/2024/10/gratisography-happy-cone-1170x780.jpg",
+      "_id": 17
+    },
+    {
+      "name": "dfdf",
+      "weather": "cold",
+      "imageUrl": "https://gratisography.com/wp-content/uploads/2024/10/gratisography-happy-cone-1170x780.jpg",
+      "_id": 18
+    },
+    {
+      "name": "agas",
+      "weather": "warm",
+      "imageUrl": "https://gratisography.com/wp-content/uploads/2024/10/gratisography-happy-cone-1170x780.jpg",
+      "_id": 19
+    },
+    {
+      "name": "wefvv",
+      "weather": "warm",
+      "imageUrl": "https://gratisography.com/wp-content/uploads/2024/10/gratisography-happy-cone-1170x780.jpg",
+      "_id": 20
     }
   ]
 }

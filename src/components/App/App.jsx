@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { coordinates, APIkey } from '../../utils/constants';
 import {CurrentTemperatureUnitContext} from '../../contexts/CurrentTemperatureUnitContext';
 import AddItemModal from '../AddItemModal/AddItemModal';
-import { getItems } from '../../utils/api';
+import { addItem, getItems } from '../../utils/api';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ 
@@ -39,8 +39,17 @@ function App() {
     setActiveModal("");
   }
 
-  const onAddItem = (values) => {
-    console.log(values);
+  const onAddItem = ({name, imageUrl, weather}) => {
+    addItem({name, imageUrl, weather})
+    .then((res) => {
+      console.log(res)
+      setClothingItems((prevItems) => {
+        return [res.data, ...prevItems]
+      });
+      closeActiveModal();
+    })
+    .catch(console.error);
+
   }
 
   const handleToggleSwitchChange = () => {
