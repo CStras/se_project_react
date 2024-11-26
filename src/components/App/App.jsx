@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import Main from '../Main/Main'
 import ItemModal from '../ItemModal/ItemModal';
 import Footer from '../Footer/Footer'
+import { Routes, Route } from 'react-router-dom';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { coordinates, APIkey } from '../../utils/constants';
 import {CurrentTemperatureUnitContext} from '../../contexts/CurrentTemperatureUnitContext';
@@ -78,13 +79,16 @@ function App() {
       <div className="app__content">
         <CurrentTemperatureUnitContext.Provider value={{currentTemperatureUnit, handleToggleSwitchChange}}>
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Routes>
+          <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />}/>
+          <Route path='/profile' element={<p>PROFILE</p>}/>
+        </Routes>
+        
+        </CurrentTemperatureUnitContext.Provider>
         <Footer />
+      </div>
         {activeModal === "add-garment" && <AddItemModal closeActiveModal={closeActiveModal} isOpen={activeModal === "add-garment"} onAddItem={onAddItem} />}
         <ItemModal  activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
-        </CurrentTemperatureUnitContext.Provider>
-      </div>
-
       
     </div>
   );
