@@ -35,8 +35,8 @@ function App() {
     setActiveModal("");
   }
 
-  const onAddItem = (e) => {
-    console.log(e);
+  const onAddItem = (values) => {
+    console.log(values);
   }
 
   const handleToggleSwitchChange = () => {
@@ -80,7 +80,7 @@ function App() {
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
-        {activeModal === "add-garment" && <AddItemModal activeModal={activeModal} closeActiveModal={closeActiveModal} isOpen={activeModal === "add-garment"} onAddItem={onAddItem} />}
+        {activeModal === "add-garment" && <AddItemModal closeActiveModal={closeActiveModal} isOpen={activeModal === "add-garment"} onAddItem={onAddItem} />}
         <ItemModal  activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
         </CurrentTemperatureUnitContext.Provider>
       </div>
