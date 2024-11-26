@@ -4,6 +4,7 @@ import './App.css'
 import Header from '../Header/Header';
 import Main from '../Main/Main'
 import ItemModal from '../ItemModal/ItemModal';
+import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer'
 import { Routes, Route } from 'react-router-dom';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
@@ -81,15 +82,13 @@ function App() {
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Routes>
           <Route path='/' element={<Main weatherData={weatherData} handleCardClick={handleCardClick} />}/>
-          <Route path='/profile' element={<p>PROFILE</p>}/>
+          <Route path='/profile' element={<Profile handleCardClick={handleCardClick} />}/>
         </Routes>
-        
         </CurrentTemperatureUnitContext.Provider>
-        <Footer />
       </div>
         {activeModal === "add-garment" && <AddItemModal closeActiveModal={closeActiveModal} isOpen={activeModal === "add-garment"} onAddItem={onAddItem} />}
         <ItemModal  activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
-      
+        <Footer />
     </div>
   );
 }
