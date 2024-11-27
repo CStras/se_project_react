@@ -17,12 +17,13 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
             <section className='cards'>
                 <p className='cards__text'>Today is {temperature} &deg; {currentTemperatureUnit} / You may want to wear:</p>
                 <ul className="cards__list">
+
                     {clothingItems
                         .filter((item) => {
-                            console.log(item);
                             
                             return item.weather === weatherData.type;
                         }).map((item) => {
+                            console.log(item);
                             return <ItemCard key={item._id} item={item} onCardClick={handleCardClick} />
                         })}
                 </ul>

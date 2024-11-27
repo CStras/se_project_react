@@ -15,7 +15,7 @@ import { addItem, getItems } from '../../utils/api';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ 
-    type: "cold", 
+    type: "", 
     temp: { F: 999, C: 998 }, 
     city: "",
   });
@@ -42,9 +42,9 @@ function App() {
   const onAddItem = ({name, imageUrl, weather}) => {
     addItem({name, imageUrl, weather})
     .then((res) => {
-      console.log(res)
+      
       setClothingItems((prevItems) => {
-        return [res.data, ...prevItems]
+        return [res, ...prevItems]
       });
       closeActiveModal();
     })
