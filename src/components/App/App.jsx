@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { coordinates, APIkey } from '../../utils/constants';
 import {CurrentTemperatureUnitContext} from '../../contexts/CurrentTemperatureUnitContext';
 import AddItemModal from '../AddItemModal/AddItemModal';
-import { addItem, getItems } from '../../utils/api';
+import { addItem, getItems, deleteCard } from '../../utils/api';
 
 function App() {
   const [weatherData, setWeatherData] = useState({ 
@@ -55,6 +55,18 @@ function App() {
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === 'C') setCurrentTemperatureUnit('F')
     if (currentTemperatureUnit === 'F') setCurrentTemperatureUnit('C')
+  }
+
+  const handleDeleteCard = (_id) => {
+    deleteCard(selectedCard._id)
+    .then((data) => {
+      setClothingItems(
+        clothingItems.filter((item) => item._id !== selectedCard._id)
+      );
+      setSelectedCard({});
+      closeActiveModal();
+    })
+    .catch(console.error)
   }
 
   useEffect(() => {
@@ -107,7 +119,7 @@ function App() {
         </CurrentTemperatureUnitContext.Provider>
       </div>
         {activeModal === "add-garment" && <AddItemModal closeActiveModal={closeActiveModal} isOpen={activeModal === "add-garment"} onAddItem={onAddItem} />}
-        <ItemModal  activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
+        <ItemModal handleDeleteCard={handleDeleteCard} activeModal={activeModal} card={selectedCard} closeActiveModal={closeActiveModal} />
         <Footer />
     </div>
   );
