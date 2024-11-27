@@ -47,7 +47,7 @@
 .modal__content {
     background-color: rgba(255, 255, 255, 1);
     position: relative;
-    padding: 0;
+    padding: 28px, 28px, 36px, 28px !important;
     max-width: 496px;
     width: 100%;
     box-sizing: border-box;
