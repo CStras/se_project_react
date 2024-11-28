@@ -142,12 +142,14 @@ function App() {
           onAddItem={onAddItem}
         />
       )}
-      <ItemModal
-        handleDeleteCard={handleDeleteCard}
-        activeModal={activeModal}
-        card={selectedCard}
-        closeActiveModal={closeActiveModal}
-      />
+      {activeModal === "preview" && (
+        <ItemModal
+          handleDeleteCard={handleDeleteCard}
+          activeModal={activeModal}
+          card={selectedCard}
+          closeActiveModal={closeActiveModal}
+        />
+      )}
       <Footer />
     </div>
   );

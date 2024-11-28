@@ -149,6 +149,18 @@
       "weather": "hot",
       "imageUrl": "https://gratisography.com/wp-content/uploads/2024/10/gratisography-halloween-cat-1036x780.jpg",
       "_id": 28
+    },
+    {
+      "name": "sdfa",
+      "weather": "warm",
+      "imageUrl": "https://asdf.com",
+      "_id": 29
+    },
+    {
+      "name": "asdf",
+      "weather": "warm",
+      "imageUrl": "https://asf.com",
+      "_id": 30
     }
   ]
 }
