@@ -24,4 +24,4 @@ function deleteCard(cardId) {
     }).then(checkRes)
 }
 
-export { getItems, addItem, deleteCard };
+export { getItems, addItem, deleteCard, checkRes };

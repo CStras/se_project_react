@@ -60,14 +60,14 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
         <div>
           <input
             type="radio"
-            id="hot"
-            name="hot"
+            id="weatherHot"
+            name="weatherType"
             className="modal__radio-input"
             value="hot"
             onChange={handleWeatherTypeChange}
           ></input>
           <label
-            htmlFor="weather"
+            htmlFor="weatherHot"
             className="modal__label modal__label_type_radio"
           >
             Hot
@@ -76,14 +76,14 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
         <div>
           <input
             type="radio"
-            name="warm"
+            name="weatherType"
             className="modal__radio-input"
-            id="warm"
+            id="weatherWarm"
             value="warm"
             onChange={handleWeatherTypeChange}
           ></input>
           <label
-            htmlFor="weather"
+            htmlFor="weatherWarm"
             className="modal__label modal__label_type_radio"
           >
             Warm
@@ -92,14 +92,14 @@ const AddItemModal = ({ closeActiveModal, isOpen, onAddItem }) => {
         <div>
           <input
             type="radio"
-            name="cold"
+            name="weatherType"
             className="modal__radio-input"
-            id="cold"
+            id="weatherCold"
             value="cold"
             onChange={handleWeatherTypeChange}
           ></input>
           <label
-            htmlFor="weather"
+            htmlFor="weatherCold"
             className="modal__label modal__label_type_radio"
           >
             Cold
