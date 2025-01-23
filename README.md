@@ -16,6 +16,8 @@ NOTE: github pages link site will work but the user will not be able to add/dele
 ## Links
 
 Can be experienced here: https://cstras.github.io/se_project_react/
-NOTE- site does not work due to json server only working locally 
+NOTE- site does not work due to json server only working locally
+
+This is the backend project link (Project 14): https://github.com/CStras/se_project_express
 
 Project Figma: https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-%7C-WTWR?node-id=311-433&node-type=canvas&t=GC87oDIcKYSq6R90-0

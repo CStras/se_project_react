@@ -1,10 +1,10 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, isLoggedIn }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
-
+  //isloggedin used for like system
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
