@@ -26,8 +26,8 @@ export function getToken() {
   return localStorage.getItem("jwt");
 }
 
-export function setToken() {
-  return localStorage.setItem("jwt");
+export function setToken(token) {
+  return localStorage.setItem("jwt", token);
 }
 
 export const checkToken = (token) => {
