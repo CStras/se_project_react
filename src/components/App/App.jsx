@@ -168,6 +168,7 @@ function App() {
 
   useEffect(() => {
     const token = getToken();
+    console.log(token);
     if (!token || token === "undefined") {
       return console.log("No token found");
     }
