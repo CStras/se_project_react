@@ -5,17 +5,19 @@ import "../ModalWithForm/ModalWithForm.css";
 function EditProfileModal({ closeActiveModal, isOpen, onEditProfile }) {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
+    console.log(e.target.value);
     setName(e.target.value);
   };
 
-  const [avatarURL, setAvatarURL] = useState("");
+  const [avatar, setAvatarURL] = useState("");
   const handleAvatarURLChange = (e) => {
+    console.log(e.target.value);
     setAvatarURL(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onEditProfile({ name, avatarURL });
+    onEditProfile({ name, avatar });
   };
 
   return (
@@ -37,14 +39,14 @@ function EditProfileModal({ closeActiveModal, isOpen, onEditProfile }) {
           onChange={handleNameChange}
         ></input>
       </label>
-      <label htmlFor="avatarURL" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar URL
         <input
           type="URL"
           className="modal__input"
-          id="avatarURL"
+          id="avatar"
           placeholder="Avatar URL"
-          value={avatarURL}
+          value={avatar}
           onChange={handleAvatarURLChange}
         ></input>
       </label>

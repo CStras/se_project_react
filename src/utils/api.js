@@ -11,9 +11,6 @@ function getItems() {
 
 function addItem({ name, weather, imageUrl }) {
   return fetch(`${baseUrl}/items`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,4 +30,24 @@ function deleteCard(cardId) {
   }).then(checkRes);
 }
 
-export { getItems, addItem, deleteCard, checkRes };
+function addCardLike(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
+  }).then(checkRes);
+}
+
+function removeCardLike(itemId) {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${getToken()}`,
+    },
+  }).then(checkRes);
+}
+
+export { getItems, addItem, deleteCard, checkRes, addCardLike, removeCardLike };

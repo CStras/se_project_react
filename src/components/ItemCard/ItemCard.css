@@ -25,3 +25,14 @@
     border-radius: 19px;
     width: 100%;
 }
+
+.card__like-btn {
+    width: 18px;
+    height: 15px;
+    border: none;
+    position: absolute;
+    top: 25px;
+    display: flex;
+    right: 95px;
+    cursor: pointer;
+}

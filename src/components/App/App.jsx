@@ -10,7 +10,13 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { coordinates, APIkey } from "../../utils/constants";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { addItem, getItems, deleteCard } from "../../utils/api";
+import {
+  addItem,
+  getItems,
+  deleteCard,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import {
   register,
   login,
@@ -24,7 +30,6 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { set } from "mongoose";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -74,6 +79,7 @@ function App() {
   const handleRegister = ({ name, email, password, avatar }) => {
     return register({ name, email, password, avatar })
       .then((data) => {
+        console.log(data);
         handleLogin(email, password);
       })
       .catch((error) => {
@@ -101,6 +107,8 @@ function App() {
   const handleDeleteCard = (_id) => {
     deleteCard(selectedCard._id)
       .then((data) => {
+        console.log(data);
+        console.log(_id);
         setClothingItems(
           clothingItems.filter((item) => item._id !== selectedCard._id)
         );
@@ -127,14 +135,78 @@ function App() {
       });
   };
 
-  const handleEditProfile = ({ name, avatarURL }) => {
-    return editProfile({ name, avatarURL })
-      .then((data) => {
-        name = data.name;
-        avatarURL = data.avatarURL;
-        closeActiveModal();
-      })
-      .catch(console.error);
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+
+        // the first argument is the card's id
+        addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+
+        // the first argument is the card's id
+        removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
+  const handleEditProfile = ({ name, avatar }) => {
+    console.log(name);
+    console.log(avatar);
+
+    if (name === undefined || name === "") {
+      return editProfile({ avatar })
+        .then((data) => {
+          //name = data.name;
+          avatar = data.avatar;
+          currentUser.avatar = avatar;
+          console.log(name, avatar);
+          console.log(data);
+          closeActiveModal();
+        })
+        .catch(console.error);
+    }
+
+    if (avatar === undefined || avatar === "") {
+      return editProfile({ name })
+        .then((data) => {
+          //name = data.name;
+          //avatar = data.avatar;
+          currentUser.name = name;
+          console.log(name, avatar);
+          console.log(data);
+          closeActiveModal();
+        })
+        .catch(console.error);
+    }
+
+    if (name && avatar) {
+      return editProfile({ name, avatar })
+        .then((data) => {
+          currentUser.name = name;
+          currentUser.avatar = avatar;
+          name = data.name;
+          avatar = data.avatar;
+
+          console.log(name, avatar);
+          console.log(data);
+          closeActiveModal();
+        })
+        .catch(console.error);
+    }
+
+    return closeActiveModal();
   };
 
   const handleLogout = () => {
@@ -168,7 +240,6 @@ function App() {
 
   useEffect(() => {
     const token = getToken();
-    console.log(token);
     if (!token || token === "undefined") {
       return console.log("No token found");
     }
@@ -213,6 +284,7 @@ function App() {
               handleRegisterClick={handleRegisterClick}
               handleAddClick={handleAddClick}
               weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
             />
             <Routes>
               <Route
@@ -222,6 +294,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -236,6 +309,7 @@ function App() {
                       isLoggedIn={isLoggedIn}
                       onLogout={handleLogout}
                       onEdit={handleEditClick}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

@@ -40,13 +40,13 @@ export const checkToken = (token) => {
   }).then(checkRes);
 };
 
-export const editProfile = ({ name, avatarURL }) => {
+export const editProfile = ({ name, avatar }) => {
   return fetch(`${baseURL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${getToken()}`,
     },
-    body: JSON.stringify({ name, avatarURL }),
+    body: JSON.stringify({ name, avatar }),
   }).then(checkRes);
 };
