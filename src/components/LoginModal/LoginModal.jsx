@@ -15,8 +15,7 @@ const LoginModal = ({ closeActiveModal, isOpen, handleLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("login modal handleSubmit");
-    handleLogin(email, password); // come back to this
+    handleLogin(email, password);
   };
 
   return (

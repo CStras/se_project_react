@@ -1,4 +1,5 @@
 import "./ModalWithForm.css";
+import { Link } from "react-router-dom";
 
 function ModalWithForm({
   children,
@@ -8,6 +9,7 @@ function ModalWithForm({
   handleOverlay,
   isOpen,
   onSubmit,
+  handleLoginClick,
 }) {
   return (
     <div onClick={handleOverlay} className={`modal ${isOpen && "modal_open"}`}>
@@ -20,9 +22,20 @@ function ModalWithForm({
         />
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-          <button className="modal__submit" type="submit">
-            {buttonText}
-          </button>
+          <div className="modal__next-btn">
+            <button className="modal__submit" type="submit">
+              {buttonText}
+            </button>
+            {titleText === "Register" && (
+              <button
+                className="submit_login"
+                type="submit"
+                onClick={handleLoginClick}
+              >
+                or Log in
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

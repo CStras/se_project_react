@@ -5,13 +5,11 @@ import "../ModalWithForm/ModalWithForm.css";
 function EditProfileModal({ closeActiveModal, isOpen, onEditProfile }) {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
   const [avatar, setAvatarURL] = useState("");
   const handleAvatarURLChange = (e) => {
-    console.log(e.target.value);
     setAvatarURL(e.target.value);
   };
 

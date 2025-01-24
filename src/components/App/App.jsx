@@ -162,17 +162,11 @@ function App() {
   };
 
   const handleEditProfile = ({ name, avatar }) => {
-    console.log(name);
-    console.log(avatar);
-
     if (name === undefined || name === "") {
       return editProfile({ avatar })
         .then((data) => {
-          //name = data.name;
           avatar = data.avatar;
           currentUser.avatar = avatar;
-          console.log(name, avatar);
-          console.log(data);
           closeActiveModal();
         })
         .catch(console.error);
@@ -181,11 +175,7 @@ function App() {
     if (avatar === undefined || avatar === "") {
       return editProfile({ name })
         .then((data) => {
-          //name = data.name;
-          //avatar = data.avatar;
           currentUser.name = name;
-          console.log(name, avatar);
-          console.log(data);
           closeActiveModal();
         })
         .catch(console.error);
@@ -198,9 +188,6 @@ function App() {
           currentUser.avatar = avatar;
           name = data.name;
           avatar = data.avatar;
-
-          console.log(name, avatar);
-          console.log(data);
           closeActiveModal();
         })
         .catch(console.error);
@@ -241,7 +228,7 @@ function App() {
   useEffect(() => {
     const token = getToken();
     if (!token || token === "undefined") {
-      return console.log("No token found");
+      return;
     }
     checkToken(token)
       .then((data) => {
@@ -295,6 +282,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -355,6 +343,7 @@ function App() {
             handleRegister={handleRegister}
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "register"}
+            handleLoginClick={handleLoginClick}
           />
         )}
         {activeModal === "edit" && (

@@ -104,10 +104,24 @@
     background-color: rgba(0, 0, 0, 0.3);
     color: rgba(255, 255, 255, 1);
     border: none;
+    font-family: "Cabinet Grotesk Medium";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
     border-radius: 4px;
     height: 36px;
     width: 124px;
     padding: 0;
+}
+
+.submit_login {
+    background: none;
+    font-family: "Cabinet Grotesk Medium";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
 }
 
 .modal__submit:hover {
