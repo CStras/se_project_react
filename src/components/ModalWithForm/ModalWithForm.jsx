@@ -9,7 +9,9 @@ function ModalWithForm({
   handleOverlay,
   isOpen,
   onSubmit,
-  handleLoginClick,
+  secondBtnClick,
+  firstBtnText,
+  secondBtnText,
 }) {
   return (
     <div onClick={handleOverlay} className={`modal ${isOpen && "modal_open"}`}>
@@ -26,13 +28,18 @@ function ModalWithForm({
             <button className="modal__submit" type="submit">
               {buttonText}
             </button>
-            {titleText === "Register" && (
+            {firstBtnText && (
+              <button className="modal__second-btn" type="submit">
+                {firstBtnText}
+              </button>
+            )}
+            {secondBtnText && (
               <button
-                className="submit_login"
-                type="submit"
-                onClick={handleLoginClick}
+                className="modal__second-btn"
+                type="button"
+                onClick={secondBtnClick}
               >
-                or Log in
+                {secondBtnText}
               </button>
             )}
           </div>

@@ -7,6 +7,7 @@ const RegisterModal = ({
   isOpen,
   handleRegister,
   handleLoginClick,
+  setActiveModal,
 }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -51,6 +52,8 @@ const RegisterModal = ({
       titleText="Register"
       onSubmit={handleSubmit}
       handleLoginClick={handleLoginClick}
+      secondBtnText="or Log In"
+      secondBtnClick={() => setActiveModal("login")}
     >
       <label htmlFor="name" className="modal__label">
         Name

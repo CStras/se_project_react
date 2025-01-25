@@ -30,6 +30,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import { set } from "mongoose";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -82,10 +83,7 @@ function App() {
         console.log(data);
         handleLogin(email, password);
       })
-      .catch((error) => {
-        console.error(error);
-        return Promise.reject(error);
-      });
+      .catch(console.error);
   };
 
   const onAddItem = ({ name, imageUrl, weather }) => {
@@ -148,7 +146,7 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err))
+          .catch(console.error)
       : // if not, send a request to remove the user's id from the card's likes array
 
         // the first argument is the card's id
@@ -158,36 +156,20 @@ function App() {
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
-          .catch((err) => console.log(err));
+          .catch(console.error);
   };
 
   const handleEditProfile = ({ name, avatar }) => {
-    if (name === undefined || name === "") {
-      return editProfile({ avatar })
-        .then((data) => {
-          avatar = data.avatar;
-          currentUser.avatar = avatar;
-          closeActiveModal();
-        })
-        .catch(console.error);
-    }
-
-    if (avatar === undefined || avatar === "") {
-      return editProfile({ name })
-        .then((data) => {
-          currentUser.name = name;
-          closeActiveModal();
-        })
-        .catch(console.error);
-    }
-
     if (name && avatar) {
       return editProfile({ name, avatar })
         .then((data) => {
-          currentUser.name = name;
-          currentUser.avatar = avatar;
           name = data.name;
           avatar = data.avatar;
+          setCurrentUser({
+            name: name,
+            avatar: avatar,
+          });
+
           closeActiveModal();
         })
         .catch(console.error);
@@ -336,6 +318,8 @@ function App() {
             closeActiveModal={closeActiveModal}
             handleLogin={handleLogin}
             isOpen={activeModal === "login"}
+            handleRegisterClick={handleRegisterClick}
+            setActiveModal={setActiveModal}
           />
         )}
         {activeModal === "register" && (
@@ -344,6 +328,7 @@ function App() {
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "register"}
             handleLoginClick={handleLoginClick}
+            setActiveModal={setActiveModal}
           />
         )}
         {activeModal === "edit" && (
