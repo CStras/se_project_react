@@ -30,7 +30,6 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { set } from "mongoose";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
