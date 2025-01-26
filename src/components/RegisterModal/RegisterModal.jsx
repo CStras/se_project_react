@@ -27,9 +27,9 @@ const RegisterModal = ({
     console.log("change name");
   };
 
-  const [avatar, setAvatarURL] = useState(""); //
-  const handleAvatarURLChange = (e) => {
-    setAvatarURL(e.target.value);
+  const [avatar, setAvatar] = useState(""); //
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.value);
     console.log("change avatar");
   };
 
@@ -86,7 +86,7 @@ const RegisterModal = ({
           id="avatar"
           placeholder="Avatar URL"
           value={avatar}
-          onChange={handleAvatarURLChange}
+          onChange={handleAvatarChange}
         ></input>
       </label>
       <label htmlFor="password" className="modal__label">

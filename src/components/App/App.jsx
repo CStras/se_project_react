@@ -158,23 +158,19 @@ function App() {
           .catch(console.error);
   };
 
-  const handleEditProfile = ({ name, avatar }) => {
-    if (name && avatar) {
-      return editProfile({ name, avatar })
-        .then((data) => {
-          name = data.name;
-          avatar = data.avatar;
-          setCurrentUser({
-            name: name,
-            avatar: avatar,
-          });
-
-          closeActiveModal();
-        })
-        .catch(console.error);
-    }
-
-    return closeActiveModal();
+  const handleEditProfile = (data) => {
+    return editProfile(data)
+      .then((data) => {
+        setCurrentUser({
+          ...currentUser,
+          name: data.name,
+          avatar: data.avatar,
+        });
+        console.log(clothingItems);
+        setIsLoggedIn(true);
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   const handleLogout = () => {

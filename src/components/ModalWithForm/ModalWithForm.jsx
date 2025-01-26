@@ -1,9 +1,7 @@
 import "./ModalWithForm.css";
-import { Link } from "react-router-dom";
 
 function ModalWithForm({
   children,
-  buttonText,
   titleText,
   closeActiveModal,
   handleOverlay,
@@ -25,11 +23,8 @@ function ModalWithForm({
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
           <div className="modal__next-btn">
-            <button className="modal__submit" type="submit">
-              {buttonText}
-            </button>
             {firstBtnText && (
-              <button className="modal__second-btn" type="submit">
+              <button className="modal__submit" type="submit">
                 {firstBtnText}
               </button>
             )}

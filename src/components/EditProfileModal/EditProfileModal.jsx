@@ -11,9 +11,9 @@ function EditProfileModal({ closeActiveModal, isOpen, onEditProfile }) {
     setName(e.target.value);
   };
 
-  const [avatar, setAvatarURL] = useState(currentUser.avatar);
-  const handleAvatarURLChange = (e) => {
-    setAvatarURL(e.target.value);
+  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -24,7 +24,7 @@ function EditProfileModal({ closeActiveModal, isOpen, onEditProfile }) {
   return (
     <ModalWithForm
       closeActiveModal={closeActiveModal}
-      buttonText="Save"
+      firstBtnText="Save"
       isOpen={isOpen}
       titleText="Edit profile"
       onSubmit={handleSubmit}
@@ -48,7 +48,7 @@ function EditProfileModal({ closeActiveModal, isOpen, onEditProfile }) {
           id="avatar"
           placeholder="Avatar URL"
           value={avatar}
-          onChange={handleAvatarURLChange}
+          onChange={handleAvatarChange}
         ></input>
       </label>
     </ModalWithForm>
