@@ -47,7 +47,7 @@ const RegisterModal = ({
   return (
     <ModalWithForm
       closeActiveModal={closeActiveModal}
-      buttonText="Sign Up"
+      firstBtnText="Sign Up"
       isOpen={isOpen}
       titleText="Register"
       onSubmit={handleSubmit}
