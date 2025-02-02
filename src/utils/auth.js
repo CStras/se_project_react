@@ -1,6 +1,6 @@
 import { checkRes } from "./api";
 
-const baseUrl =
+const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://api.wtwr.developer.li"
     : "http://localhost:3001";

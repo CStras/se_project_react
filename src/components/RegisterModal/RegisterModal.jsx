@@ -12,25 +12,21 @@ const RegisterModal = ({
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log("change email");
   };
 
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    console.log("change password");
   };
 
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
-    console.log("change name");
   };
 
   const [avatar, setAvatar] = useState(""); //
   const handleAvatarChange = (e) => {
     setAvatar(e.target.value);
-    console.log("change avatar");
   };
 
   const handleSubmit = (e) => {
