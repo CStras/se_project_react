@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.developer.li"
+    : "http://localhost:3001";
 import { getToken } from "./auth";
 
 function checkRes(res) {
