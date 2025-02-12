@@ -16,7 +16,9 @@ NOTE: github pages link site will work but the user will not be able to add/dele
 ## Links
 
 Can be experienced here: https://cstras.github.io/se_project_react/
-NOTE- site does not work due to json server only working locally
+NOTE- site does not work on GitHub Pages due to json server only working locally
+
+WORKING LINK- https://www.wtwr.developer.li/
 
 This is the backend project link (Project 14): https://github.com/CStras/se_project_express
 
